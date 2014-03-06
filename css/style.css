@@ -39,6 +39,7 @@ a.btn:hover {
 .spcr-t3 { margin-top: 20px; }
 
 .logoBlock {
+    background: white;
     width: 100%;
     min-height: 75px;
     max-height: 100px;
@@ -51,6 +52,7 @@ a.btn:hover {
     margin: 0 auto;
 }
 .center-wrapper {
+    background: white;
     display: block;
     margin: 0 auto;
     text-align: center;
