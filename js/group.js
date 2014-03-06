@@ -74,7 +74,23 @@ $(document).on("pagebeforeshow", "#group", function(e, data) {
         groupEventsDiv.hide();
     }
     
-        var groupGroupList = $('.group-group-list');
+    var groupPastEventList = $('.group-past-event-list');
+    var groupPastEventsDiv = $('.group-past-events');
+    
+    if (group.pastEvents != null && group.pastEvents.length > 0){
+        var events = '';
+        for (i = 0; i < group.pastEvents.length; i++) {
+            events += '<li><a href="#event" data-p1=' + group.pastEvents[i].id + ' data-p2=' + group.id + '>' + group.pastEvents[i].name + '</a></li>';
+        }
+        groupPastEventList.html(events);
+        listify(groupPastEventList);
+        groupPastEventsDiv.show();
+    } else {
+        groupPastEventList.empty();
+        groupPastEventsDiv.hide();
+    }
+    
+    var groupGroupList = $('.group-group-list');
     var groupGroupDiv  = $('.group-groups');
     
     if (group.children != null && group.children.length > 0){
