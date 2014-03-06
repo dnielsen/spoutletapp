@@ -63,7 +63,7 @@ $(document).on("pagebeforeshow", "#group", function(e, data) {
     
     if (group.upcomingEvents != null && group.upcomingEvents.length > 0){
         var events = '';
-        for (i = 0; i < group.entrySets.length; i++) {
+        for (i = 0; i < group.upcomingEvents.length; i++) {
             events += '<li><a href="#event" data-p1=' + group.upcomingEvents[i].id + ' data-p2=' + group.id + '>' + group.upcomingEvents[i].name + '</a></li>';
         }
         groupEventList.html(events);

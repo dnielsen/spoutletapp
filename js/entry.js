@@ -31,7 +31,7 @@ $(document).on("pagebeforeshow", "#entry", function(e, data) {
     }
 
     $('.entry-title').html(entry.name);
-    $('.entry-description').html(entry.description);
+    $('.entry-description').html('<p>'+entry.description+'</p>');
     
     var entrySetList = $('.entry-entrySet-list');
     var entrySetDiv  = $('.entry-entrySet');
