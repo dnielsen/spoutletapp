@@ -39,7 +39,7 @@ $(document).on("pagebeforeshow", "#event", function(e, data) {
     }
 
     $('.event-title').html(event.name);
-    $('.event-description').html(event.description);
+    $('.event-description').html('<p>'+event.description+'</p>');
     
     $('#event-info').html('<h1>When?</h1><p>'+event.daterange+'</p><p>'+event.timerange+'</p><h1>Where?</h1><p>'+event.location+'</p><p>'+event.address1+'</p><p>'+event.address2+'</p>');
     

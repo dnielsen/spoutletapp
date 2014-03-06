@@ -36,7 +36,7 @@ $(document).on("pagebeforeshow", "#session", function(e, data) {
 
     $('.session-title').html(session.name);
     $('.session-time').html(session.date+'<br/>'+session.time);
-    $('.session-description').html(session.description);
+    $('.session-description').html('<p>'+session.description+'</p>');
     
     var eventList = $('.session-event-list');
     var eventDiv  = $('.session-event');

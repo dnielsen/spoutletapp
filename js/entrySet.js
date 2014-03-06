@@ -40,7 +40,7 @@ $(document).on("pagebeforeshow", "#entrySet", function(e, data) {
     }
 
     $('.entrySet-title').html(entrySet.name);
-    $('.entrySet-description').html(entrySet.description);
+    $('.entrySet-description').html('<p>'+entrySet.description+'</p>');
     
     var entryList = $('.entrySet-entry-list');
     var entriesDiv  = $('.entrySet-entries');

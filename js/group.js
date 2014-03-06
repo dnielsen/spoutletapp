@@ -40,7 +40,7 @@ $(document).on("pagebeforeshow", "#group", function(e, data) {
         $('.group-title').html(group.name);
     }
 
-    $('.group-description').html(group.description);
+    $('.group-description').html('<p>'+group.description+'</p>');
 
     var groupEntrySetList = $('.group-entrySet-list');
     var groupEntrySetDiv  = $('.group-entrySets');
