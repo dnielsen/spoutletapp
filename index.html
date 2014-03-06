@@ -26,6 +26,8 @@
             $.mobile.changePage.defaults.allowSamePageTransition = true;
             $.mobile.defaultPageTransition = 'slide';  
             
+            upButton = $('.upButton');
+            
             store = {
                 p1: null,
                 p2: null,
@@ -33,11 +35,17 @@
             }
             
             // Links can pass data around by adding the attributes data-px
-            $('.ui-content').on('click', 'a', function(){
+            $(document).on('click', 'a', function(){
                 store.p1 = $(this).data('p1');
                 store.p2 = $(this).data('p2');
                 store.p3 = $(this).data('p3');
             });
+            
+            // Clear out Up button for new page, each page will populate this if needed
+            $('.upButton').on('click', 'a', function() {
+                upButton.empty();
+            })
+                           
         });
         
         function listify(listObject) {
@@ -85,8 +93,12 @@
         </div>
         
         <div data-role="footer" data-position="fixed">
-            <div class="center-wrapper">
-                <a href="#home" class="ui-btn ui-btn-icon-left ui-btn-corner-all ui-icon-home" data-direction="reverse">Home</a>
+            <div class="ui-grid-b footerWrapper">
+                <div class="ui-block-a left upButton"></div>
+                <div class="ui-block-b center">
+                    <a href="#home" class="ui-btn ui-btn-icon-left ui-btn-corner-all ui-icon-home" data-direction="reverse">Home</a>
+                </div>
+                <div class="ui-block-c right"></div>                
             </div>
         </div>
         
@@ -106,8 +118,12 @@
         </div>
         
         <div data-role="footer" data-position="fixed">
-            <div class="center-wrapper">
-                <a href="#home" class="ui-btn ui-btn-icon-left ui-btn-corner-all ui-icon-home" data-direction="reverse">Home</a>
+            <div class="ui-grid-b footerWrapper">
+                <div class="ui-block-a left upButton"></div>
+                <div class="ui-block-b center">
+                    <a href="#home" class="ui-btn ui-btn-icon-left ui-btn-corner-all ui-icon-home" data-direction="reverse">Home</a>
+                </div>
+                <div class="ui-block-c right"></div>                
             </div>
         </div>
         
@@ -127,8 +143,12 @@
         </div>
         
         <div data-role="footer" data-position="fixed">
-            <div class="center-wrapper">
-                <a href="#home" class="ui-btn ui-btn-icon-left ui-btn-corner-all ui-icon-home" data-direction="reverse">Home</a>
+            <div class="ui-grid-b footerWrapper">
+                <div class="ui-block-a left upButton"></div>
+                <div class="ui-block-b center">
+                    <a href="#home" class="ui-btn ui-btn-icon-left ui-btn-corner-all ui-icon-home" data-direction="reverse">Home</a>
+                </div>
+                <div class="ui-block-c right"></div>                
             </div>
         </div>
         
@@ -163,12 +183,6 @@
                 </ul>
             </div>
             
-            <div class="group-parent">
-                <h3>Parent Group</h3>
-                <ul class="group-parent-list" data-role="listiew" data-inset="true">
-                </ul>
-            </div>
-            
             <div class="group-groups">
                 <h3>Regional Groups</h3>
                 <ul class="group-group-list" data-role="listview" data-inset="true">
@@ -178,8 +192,12 @@
         </div>
     
         <div data-role="footer" data-position="fixed">
-            <div class="center-wrapper">
-                <a href="#home" class="ui-btn ui-btn-icon-left ui-btn-corner-all ui-icon-home" data-direction="reverse">Home</a>
+            <div class="ui-grid-b footerWrapper">
+                <div class="ui-block-a left upButton"></div>
+                <div class="ui-block-b center">
+                    <a href="#home" class="ui-btn ui-btn-icon-left ui-btn-corner-all ui-icon-home" data-direction="reverse">Home</a>
+                </div>
+                <div class="ui-block-c right"></div>                
             </div>
         </div>
         
@@ -219,16 +237,15 @@
                 </ul>
             </div>
             
-            <div class="event-group">
-                <h3>Group</h3>
-                <ul class="event-group-list" data-role="listview" data-inset="true">
-                </ul>
-            </div>
         </div>
     
         <div data-role="footer" data-position="fixed">
-            <div class="center-wrapper">
-                <a href="#home" class="ui-btn ui-btn-icon-left ui-btn-corner-all ui-icon-home" data-direction="reverse">Home</a>
+            <div class="ui-grid-b footerWrapper">
+                <div class="ui-block-a left upButton"></div>
+                <div class="ui-block-b center">
+                    <a href="#home" class="ui-btn ui-btn-icon-left ui-btn-corner-all ui-icon-home" data-direction="reverse">Home</a>
+                </div>
+                <div class="ui-block-c right"></div>                
             </div>
         </div>
         
@@ -249,17 +266,15 @@
                 <ul class="entrySet-entry-list" data-role="listview">
                 </ul>
             </div>
-            
-            <div class="entrySet-parent">
-                <h3>Parent</h3>
-                <ul class="entrySet-parent-list" data-role="listview" data-inset="true">
-                </ul>
-            </div>
         </div>
     
         <div data-role="footer" data-position="fixed">
-            <div class="center-wrapper">
-                <a href="#home" class="ui-btn ui-btn-icon-left ui-btn-corner-all ui-icon-home" data-direction="reverse">Home</a>
+            <div class="ui-grid-b footerWrapper">
+                <div class="ui-block-a left upButton"></div>
+                <div class="ui-block-b center">
+                    <a href="#home" class="ui-btn ui-btn-icon-left ui-btn-corner-all ui-icon-home" data-direction="reverse">Home</a>
+                </div>
+                <div class="ui-block-c right"></div>                
             </div>
         </div>
         
@@ -275,21 +290,17 @@
         <div data-role="main" class="ui-content">
             <h3 class="entry-title center"></h3>
             <div class="entry-description"></div>
-            
-            <div class="entry-entrySet">
-                <h3>List</h3>
-                <ul class="entry-entrySet-list" data-role="listview" data-inset="true">
-                </ul>
-            </div>
-            
         </div>
     
         <div data-role="footer" data-position="fixed">
-            <div class="center-wrapper">
-                <a href="#home" class="ui-btn ui-btn-icon-left ui-btn-corner-all ui-icon-home" data-direction="reverse">Home</a>
+            <div class="ui-grid-b footerWrapper">
+                <div class="ui-block-a left upButton"></div>
+                <div class="ui-block-b center">
+                    <a href="#home" class="ui-btn ui-btn-icon-left ui-btn-corner-all ui-icon-home" data-direction="reverse">Home</a>
+                </div>
+                <div class="ui-block-c right"></div>                
             </div>
         </div>
-        
     </div>
     
     <div id="session" data-role="page">
@@ -303,18 +314,15 @@
             <h3 class="session-title center"></h3>
             <h2 class="session-time center"></h2>
             <div class="session-description"></div>
-            
-            <div class="session-event">
-                <h3>Event</h3>
-                <ul class="session-event-list" data-role="listview" data-inset="true">
-                </ul>
-            </div>
-            
         </div>
     
         <div data-role="footer" data-position="fixed">
-            <div class="center-wrapper">
-                <a href="#home" class="ui-btn ui-btn-icon-left ui-btn-corner-all ui-icon-home" data-direction="reverse">Home</a>
+            <div class="ui-grid-b footerWrapper">
+                <div class="ui-block-a left upButton"></div>
+                <div class="ui-block-b center">
+                    <a href="#home" class="ui-btn ui-btn-icon-left ui-btn-corner-all ui-icon-home" data-direction="reverse">Home</a>
+                </div>
+                <div class="ui-block-c right"></div>                
             </div>
         </div>
         

@@ -29,9 +29,8 @@ a.btn:hover {
     color: #2faad9;
 }
 
-.right { float: right; }
-.left { float: left; }
-.clear { clear: both; }
+.left { text-align: left; }
+.right { text-align: right; }
 .center { text-align: center; }
 
 .spcr-t { margin-top: 5px; }
@@ -51,9 +50,6 @@ a.btn:hover {
     padding: 5px;
     margin: 0 auto;
 }
-.center-wrapper {
+.footerWrapper {
     background: white;
-    display: block;
-    margin: 0 auto;
-    text-align: center;
 }

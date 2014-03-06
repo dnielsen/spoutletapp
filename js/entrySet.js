@@ -58,20 +58,15 @@ $(document).on("pagebeforeshow", "#entrySet", function(e, data) {
         entriesDiv.hide();
     }
     
-    var parentList = $('.entrySet-parent-list');
-    var parentDiv  = $('.entrySet-parent');
     var parentLink = '';
     
     if (parentType == 'group') {
-        parentLink = '<li><a href="#group" data-p1='+parentId+' data-p2='+parent.parentId+' data-direction="reverse">'+parent.name+'</a></li>';
+        parentLink = '<a href="#group" class="ui-btn ui-icon-arrow-l ui-btn-icon-left" data-p1='+parentId+' data-p2='+parent.parentId+' data-direction="reverse">Group</a>';
     }
     else {
-        parentLink = '<li><a href="#event" data-p1='+parentId+' data-p2='+parent.group+' data-direction="reverse">'+parent.name+'</a></li>';
+        parentLink = '<a href="#event" class="ui-btn ui-icon-arrow-l ui-btn-icon-left" data-p1='+parentId+' data-p2='+parent.group+' data-direction="reverse">Event</a>';
     }
     
-    parentList.html(parentLink);
-    listify(parentList);
-    parentDiv.show();
-    
+    upButton.html(parentLink);
 
 });

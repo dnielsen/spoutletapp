@@ -33,10 +33,6 @@ $(document).on("pagebeforeshow", "#entry", function(e, data) {
     $('.entry-title').html(entry.name);
     $('.entry-description').html('<p>'+entry.description+'</p>');
     
-    var entrySetList = $('.entry-entrySet-list');
-    var entrySetDiv  = $('.entry-entrySet');
+    upButton.html('<a href="#entrySet" class="ui-btn ui-icon-arrow-l ui-btn-icon-left" data-p1='+entrySet.id+' data-p2='+entrySet.parentType+' data-p3='+entrySet.parentId+' data-direction="reverse">List</a>');
     
-    entrySetList.html('<li><a href="#entrySet" data-p1='+entrySet.id+' data-p2='+entrySet.parentType+' data-p3='+entrySet.parentId+' data-direction="reverse">'+entrySet.name+'</a></li>');
-    listify(entrySetList);
-    entrySetDiv.show();
 });

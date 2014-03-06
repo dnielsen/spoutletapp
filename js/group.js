@@ -106,16 +106,7 @@ $(document).on("pagebeforeshow", "#group", function(e, data) {
         groupGroupDiv.hide();
     }
     
-    var groupParentList = $('.group-parent-list');
-    var groupParentDiv  = $('.group-parent');
-    
     if (parentId != null ){
-        groupParentList.html('<li><a href="#group" data-p1=' + parentId + ' data-direction="reverse">' + parentGroup.name + '</a></li>');
-        listify(groupParentList);
-        groupParentDiv.show();
-    } else {
-        groupParentList.empty();
-        groupParentDiv.hide();
+        upButton.html('<a href="#group" class="ui-btn ui-icon-arrow-l ui-btn-icon-left" data-p1='+parentId+' data-direction="reverse">Parent</a>');
     }
-    
 });

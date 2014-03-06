@@ -4,7 +4,7 @@ $(document).on("pagebeforeshow", "#session", function(e, data) {
     var eventId     = store.p2;
     
     var session = null;
-    var event = null;
+    var event   = null;
     
     for (i = 0; i < events.length; i++) {
         if (events[i].id == eventId){
@@ -38,10 +38,6 @@ $(document).on("pagebeforeshow", "#session", function(e, data) {
     $('.session-time').html(session.date+'<br/>'+session.time);
     $('.session-description').html('<p>'+session.description+'</p>');
     
-    var eventList = $('.session-event-list');
-    var eventDiv  = $('.session-event');
+    upButton.html('<a href="#event" class="ui-btn ui-icon-arrow-l ui-btn-icon-left" data-p1='+event.id+' data-p2='+event.group+' data-direction="reverse">Event</a>');
     
-    eventList.html('<li><a href="#event" data-p1='+event.id+' data-p2='+event.group+' data-direction="reverse">'+event.name+'</a></li>');
-    listify(eventList);
-    eventDiv.show();
 });

@@ -102,11 +102,6 @@ $(document).on("pagebeforeshow", "#event", function(e, data) {
         eventEntrySetDiv.hide();
     }
     
-    var groupList = $('.event-group-list');
-    var groupDiv  = $('.event-group');
-    
-    groupList.html('<li><a href="#group" data-p1=' + groupId + ' data-p2=' + group.parentId  + ' data-direction="reverse">' + group.name + '</a></li>');
-    listify(groupList);
-    groupDiv.show();
+    upButton.html('<a href="#group" class="ui-btn ui-icon-arrow-l ui-btn-icon-left" data-p1='+groupId+' data-p2='+group.parentId+' data-direction="reverse">Group</a>');
 
 });
