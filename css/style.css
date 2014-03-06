@@ -21,12 +21,12 @@ a.btn {
     width: 90%;
     max-width: 500px;
 }
+a.btn:visited {
+    color: white;
+}
 a.btn:hover {
     background: white;
     color: #2faad9;
-}
-a.btn:visited {
-    color: white;
 }
 
 .right { float: right; }
@@ -53,4 +53,5 @@ a.btn:visited {
 .center-wrapper {
     display: block;
     margin: 0 auto;
+    text-align: center;
 }
