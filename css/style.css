@@ -1,0 +1,57 @@
+/* Prevent copy paste for all elements except text fields */
+*  { -webkit-user-select:none; -webkit-tap-highlight-color:rgba(255, 255, 255, 0); }
+input, textarea  { -webkit-user-select:text; }
+
+body { 
+    background-color:white; 
+    color:#2faad9;
+    font-size: 1.2em;
+}
+a.btn {
+    display: block;
+    margin: 10px auto;
+    padding: 20px 10px;
+    text-align: center;
+    text-decoration: none;
+    background: #2faad9;
+    border: 1px #2faad9 solid;
+    box-shadow: #555 0px 3px 3px;
+    color: white;
+    font-size: 1.5em;
+    width: 90%;
+    max-width: 500px;
+}
+a.btn:hover {
+    background: white;
+    color: #2faad9;
+}
+a.btn:visited {
+    color: white;
+}
+
+.right { float: right; }
+.left { float: left; }
+.clear { clear: both; }
+.center { text-align: center; }
+
+.spcr-t { margin-top: 5px; }
+.spcr-t2 { margin-top: 10px; }
+.spcr-t3 { margin-top: 20px; }
+
+.logoBlock {
+    width: 100%;
+    min-height: 75px;
+    max-height: 100px;
+}
+.logoBlock img {
+    display: block;
+    width: 90%;
+    max-width: 400px;
+    max-height: 90px;
+    padding: 5px;
+    margin: 0 auto;
+}
+.center-wrapper {
+    display: block;
+    margin: 0 auto;
+}
