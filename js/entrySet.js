@@ -48,7 +48,7 @@ $(document).on("pagebeforeshow", "#entrySet", function(e, data) {
     if (entrySet.entries != null && entrySet.entries.length > 0){
         var entries = '';
         for (i = 0; i < entrySet.entries.length; i++) {
-            entries += '<li><a href="#entry" data-p1='+entrySet.entries[i].id+' data-p2='+entrySet.id+'>'+entrySet.entries[i].name+'<p class="ul-li-count">'+entrySet.entries[i].numVotes+'</p></a></li>';
+            entries += '<li><a href="#entry" data-p1='+entrySet.entries[i].id+' data-p2='+entrySet.id+'>'+entrySet.entries[i].name+'<p>'+entrySet.entries[i].numVotes+' votes</p></a></li>';
         }
         entryList.html(entries);
         listify(entryList);

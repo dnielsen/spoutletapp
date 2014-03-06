@@ -44,7 +44,7 @@ $.getJSON(campsiteApi, null, function(campsiteData) {
     if (entrySets != null) {
         var entrySetList = '';
         for (i = 0; i < entrySets.length; i++) {
-            entrySetList += '<li><a href="#entrySet" data-p1='+entrySets[i].id+' data-p2='+entrySets[i].parentType+' data-p3='+entrySets[i].parentId+'><h1>'+entrySets[i].name+'</h1><p>'+entrySets[i].parentName+'</p><p class="ul-li-count">'+entrySets[i].entries.length+'</p></a></li>';
+            entrySetList += '<li><a href="#entrySet" data-p1='+entrySets[i].id+' data-p2='+entrySets[i].parentType+' data-p3='+entrySets[i].parentId+'><h1>'+entrySets[i].name+'</h1><p>'+entrySets[i].parentName+'</p><p>'+entrySets[i].entries.length+' ideas</p></a></li>';
         }
         var entrySetsList = $('.entrySets-entrySet-list');
         entrySetsList.append(entrySetList);
