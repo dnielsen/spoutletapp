@@ -41,7 +41,33 @@ $(document).on("pagebeforeshow", "#event", function(e, data) {
     $('.event-title').html(event.name);
     $('.event-description').html('<p>'+event.description+'</p>');
     
-    $('#event-info').html('<h1>When?</h1><p>'+event.daterange+'</p><p>'+event.timerange+'</p><h1>Where?</h1><p>'+event.location+'</p><p>'+event.address1+'</p><p>'+event.address2+'</p>');
+    
+    var eventInfo = '';
+    
+    if (event.daterange != null || event.timerange != null) {
+        eventInfo += '<h1>When?</h1>';
+        if (event.daterange.length > 0) {
+            eventInfo += '<p>'+event.daterange+'</p>';
+        }
+        if (event.timerange.length > 0) {
+            eventInfo += '<p>'+event.timerange+'</p>';
+        }
+    }
+    
+    if (event.location != null || event.address1 != null || event.address2 != null) {
+        eventInfo += '<h1>Where?</h1>';
+        if (event.location.length > 0) {
+            eventInfo += '<p>'+event.location+'</p>';
+        }
+        if (event.address1.length > 0) {
+            eventInfo += '<p>'+event.address1+'</p>';
+        }
+        if (event.address2.length > 0) {
+            eventInfo += '<p>'+event.address2+'</p>';
+        }
+    }
+    
+    $('#event-info').html(eventInfo);
     
     var scheduleList    = $('.event-schedule-list');
     var unscheduledList = $('.event-unscheduled-list');
