@@ -109,4 +109,7 @@ $(document).on("pagebeforeshow", "#group", function(e, data) {
     if (parentId != null ){
         upButton.html('<a href="#group" class="ui-btn ui-icon-arrow-l ui-btn-icon-left" data-p1='+parentId+' data-direction="reverse">Parent</a>');
     }
+    else {
+        upButton.empty();
+    }
 });
