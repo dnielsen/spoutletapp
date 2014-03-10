@@ -7,7 +7,7 @@ var events       = null;
 $.getJSON(campsiteApi, null, function(campsiteData) {
 
     groups = campsiteData.groups;
-    if (groups != null) {
+    if (groups !== null) {
         var groupList = '';
         for (i = 0; i < groups.length; i++) {
             if (groups[i].category == 'topic'){
@@ -20,10 +20,10 @@ $.getJSON(campsiteApi, null, function(campsiteData) {
     }
 
     events = campsiteData.events;
-    if (events != null) {
+    if (events !== null) {
         var eventList = '';
         for (i = 0; i < events.length; i++) {
-            if (events[i].upcoming == true){
+            if (events[i].upcoming === true){
                 eventList += '<li data-daterange="'+events[i].startDateString+'"><a href="#event" data-p1=' + events[i].id + ' data-p2=' + events[i].group + '>' + events[i].name + '</a></li>';
             }
         }
@@ -41,7 +41,7 @@ $.getJSON(campsiteApi, null, function(campsiteData) {
     }
     
     entrySets = campsiteData.entrySets;
-    if (entrySets != null) {
+    if (entrySets !== null) {
         var entrySetList = '';
         for (i = 0; i < entrySets.length; i++) {
             entrySetList += '<li><a href="#entrySet" data-p1='+entrySets[i].id+' data-p2='+entrySets[i].parentType+' data-p3='+entrySets[i].parentId+'><h1>'+entrySets[i].name+'</h1><p>'+entrySets[i].parentName+'</p><p>'+entrySets[i].entries.length+' ideas</p></a></li>';
@@ -50,6 +50,9 @@ $.getJSON(campsiteApi, null, function(campsiteData) {
         entrySetsList.append(entrySetList);
         listify(entrySetsList);
     }
+
+    $('.loading').hide();
+    $('.hidden').show();
     
 });
 

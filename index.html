@@ -16,7 +16,7 @@
 	<script type="text/javascript">
         
 		/* This code is used to run as soon as Intel activates */
-		var onDeviceReady=function(){
+		var onDeviceReady=function() {
 		  intel.xdk.device.hideSplashScreen();
 		};
 		document.addEventListener("intel.xdk.device.ready",onDeviceReady,false);
@@ -26,25 +26,29 @@
             $.mobile.changePage.defaults.allowSamePageTransition = true;
             $.mobile.defaultPageTransition = 'slide';  
             
-            upButton = $('.upButton');
-            
+            // Links can pass data around by adding the attributes data-px
             store = {
                 p1: null,
                 p2: null,
                 p3: null
-            }
-            
-            // Links can pass data around by adding the attributes data-px
+            }            
             $(document).on('click', 'a', function(){
                 store.p1 = $(this).data('p1');
                 store.p2 = $(this).data('p2');
                 store.p3 = $(this).data('p3');
             });
-            
+
             // Clear out Up button for new page, each page will populate this if needed
+            upButton = $('.upButton');
             $('.upButton').on('click', 'a', function() {
                 upButton.empty();
-            })
+            });
+            
+            // To display error message, set the data-message attribute of the message link and click it (wip)
+            // messageLink = $('#messageLink');
+            // $(document).on('click', '#messageLink', function(){
+            //     $('#message').html('<p>'+$(this).data('message')+'</p>');
+            // });
                            
         });
         
@@ -88,7 +92,8 @@
         </div>
         
         <div data-role="main" class="ui-content">
-            <ul class="groups-group-list" data-role="listview" data-filter="true" data-autodividers="true" data-hide-dividers="true" data-filter-placeholder="Search Groups" >
+            <img class="loading" src="images/loading.gif"></img>
+            <ul class="groups-group-list hidden" data-role="listview" data-filter="true" data-autodividers="true" data-hide-dividers="true" data-filter-placeholder="Search Groups" >
             </ul>
         </div>
         
@@ -113,7 +118,8 @@
         </div>
         
         <div data-role="main" class="ui-content">
-            <ul class="events-event-list" data-role="listview" data-autodividers="true" data-autodividers="true" data-hide-dividers="true" data-filter="true" data-filter-placeholder="Search Events">
+            <img class="loading" src="images/loading.gif"></img>
+            <ul class="events-event-list hidden" data-role="listview" data-autodividers="true" data-autodividers="true" data-hide-dividers="true" data-filter="true" data-filter-placeholder="Search Events">
             </ul>
         </div>
         
@@ -138,7 +144,8 @@
         </div>
         
         <div data-role="main" class="ui-content">
-            <ul class="entrySets-entrySet-list" data-role="listview" data-filter="true" data-filter-placeholder="Search Lists" >
+            <img class="loading" src="images/loading.gif"></img>
+            <ul class="entrySets-entrySet-list hidden" data-role="listview" data-filter="true" data-filter-placeholder="Search Lists" >
             </ul>
         </div>
         
@@ -327,6 +334,10 @@
         </div>
         
     </div>
+    
+<!--     <a href='#message' id='messageLink' data-message='' data-rel='dialog'></a>
+    <div id='#message' data-role="dialog">
+    </div> -->
     
 </body>
 </html>
