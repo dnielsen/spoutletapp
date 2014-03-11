@@ -1,3 +1,7 @@
+// Host address for API calls
+api_channel = 'http';
+api_host    = 'api.campsite.org';
+api_key     = localStorage['api-key'];
 
 /**
  * Construct the api call
@@ -13,13 +17,19 @@
  */
 function getApiCall(route, auth1, auth2) {
 
-    var api_call = api_channel + '://' + auth1;
+    var api_call         = api_channel + '://';
+    var api_host_segment = api_host;
+
+    if (arguments.length > 1) {
+        api_call += auth1;
+        api_host_segment = '@' + api_host_segment;
+    }
 
     if (arguments.length == 3) {
         api_call += ':' + auth2;
     }
 
-    api_call += '@' + api_host + '/' + route + '?callback=?';
+    api_call += api_host_segment + '/' + route + '?callback=?';
 
     return api_call;
 }
@@ -38,12 +48,12 @@ function getDateRangeString(starts_at, ends_at) {
     var startDate = monthNames[start.getMonth()]+' '+start.getDate();
     var startYear = start.getFullYear();
 
-    var endMonth = monthNames[end.getMonth()]+' '+end.getDate();
+    var endDate = monthNames[end.getMonth()]+' '+end.getDate();
     var endYear  = end.getFullYear();
 
 
     if (startYear == endYear) {
-        return (startDate == endDate) ? startDate+', '+endYear : startDate+' - '+endDate+', '+startsAtYear;
+        return (startDate == endDate) ? startDate+', '+endYear : startDate+' - '+endDate+', '+startYear;
     } else {
         return startDate+', '+startYear+' - '+endDate+', '+endYear;
     }

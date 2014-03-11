@@ -5,7 +5,7 @@ var entrySets   = null;
 var entries     = null;
 
 
-$.getJSON(getApiCall('groups', api_key), null, function(groups) {
+$.getJSON(getApiCall('groups'), null, function(groups) {
 
     if (groups !== null) {
         var groupList = '';
@@ -18,14 +18,16 @@ $.getJSON(getApiCall('groups', api_key), null, function(groups) {
         groupsList.append(groupList);
         listify(groupsList);
     }
+     $('.groups-loading').hide();
+     $('.groups-group-list').show();
 });
 
-$.getJSON(getApiCall('events', api_key), null, function(events) {
+$.getJSON(getApiCall('events'), null, function(events) {
 
     if (events !== null) {
         var eventList = '';
         for (i = 0; i < events.length; i++) {
-            if (events[i].upcoming === true){
+            if ((new Date(events[i].starts_at)) >= (new Date())){
                 eventList += '<li data-daterange="'+getDateRangeString(events[i].starts_at, events[i].ends_at)+'"><a href="#event" data-p1=' + events[i].id + ' data-p2=' + events[i].group_id + '>' + events[i].name + '</a></li>';
             }
         }
@@ -41,6 +43,8 @@ $.getJSON(getApiCall('events', api_key), null, function(events) {
         
         listify(eventsList);
     }
+     $('.events-loading').hide();
+     $('.events-event-list').show();
 });
 
 // $.getJSON(entrySetsRoute, null, function(entrySets) {
@@ -55,8 +59,8 @@ $.getJSON(getApiCall('events', api_key), null, function(events) {
 //         listify(entrySetsList);
 //     }
 
-//     $('.loading').hide();
-//     $('.hidden').show();
+//     $('.entrySets-loading').hide();
+//     $('.entrySets-entrySet-list').show();
 
 // });
     

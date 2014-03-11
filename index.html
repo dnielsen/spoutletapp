@@ -41,12 +41,7 @@
                 store.p2 = $(this).data('p2');
                 store.p3 = $(this).data('p3');
             });
-
-            // Host address for API calls
-            api_channel = 'http';
-            api_host    = 'api.campsite.org';
-            api_key     = localStorage['api-key'];
-
+            
             if (api_key == null) {
                 $('.login-link').show();
             }
@@ -71,8 +66,8 @@
         
     </script>
     
- <!--   <script src="js/api_call.js"></script>
-    <script src="js/group.js"></script>
+    <script src="js/collections.js"></script>
+ <!--   <script src="js/group.js"></script>
     <script src="js/event.js"></script>
     <script src="js/entrySet.js"></script>
     <script src="js/entry.js"></script>
