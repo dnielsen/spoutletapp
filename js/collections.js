@@ -28,7 +28,7 @@ $.getJSON(getApiCall('events'), null, function(events) {
         var eventList = '';
         for (i = 0; i < events.length; i++) {
             if ((new Date(events[i].starts_at)) >= (new Date())){
-                eventList += '<li data-daterange="'+getDateRangeString(events[i].starts_at, events[i].ends_at)+'"><a href="#event" data-p1=' + events[i].id + ' data-p2=' + events[i].group_id + '>' + events[i].name + '</a></li>';
+                eventList += '<li data-daterange="'+getDateRangeString(events[i].starts_at, events[i].ends_at)+'"><a href="#event" data-p1='+events[i].id+'>'+events[i].name+'</a></li>';
             }
         }
         var eventsList = $('.events-event-list');

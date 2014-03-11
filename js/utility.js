@@ -59,6 +59,10 @@ function getDateRangeString(starts_at, ends_at) {
     }
 }
 
+function getTimeRangeString(starts_at, ends_at) {
+    return '5:00 - 7:00';
+}
+
 /**
  * Give me a listview object, I'll make sure it's a jquery listview
  */

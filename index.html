@@ -41,7 +41,7 @@
                 store.p2 = $(this).data('p2');
                 store.p3 = $(this).data('p3');
             });
-            
+
             if (api_key == null) {
                 $('.login-link').show();
             }
@@ -51,9 +51,6 @@
 
             // Clear out Up button for new page, each page will populate this if needed
             upButton = $('.upButton');
-            $('.upButton').on('click', 'a', function() {
-                upButton.empty();
-            });
             
             // To display error message, set the data-message attribute of the message link and click it (wip)
             // messageLink = $('#messageLink');
@@ -67,8 +64,9 @@
     </script>
     
     <script src="js/collections.js"></script>
- <!--   <script src="js/group.js"></script>
     <script src="js/event.js"></script>
+    <script src="js/group.js"></script>
+ <!--   
     <script src="js/entrySet.js"></script>
     <script src="js/entry.js"></script>
     <script src="js/session.js"></script> -->
@@ -119,14 +117,14 @@
         </div>
         
         <div data-role="main" class="ui-content">
-            <img class="loading" src="images/loading.gif"></img>
+            <img class="groups-loading loading" src="images/loading.gif"></img>
             <ul class="groups-group-list hidden" data-role="listview" data-filter="true" data-autodividers="true" data-hide-dividers="true" data-filter-placeholder="Search Groups" >
             </ul>
         </div>
         
         <div data-role="footer" data-position="fixed">
             <div class="ui-grid-b footerWrapper">
-                <div class="ui-block-a left upButton"></div>
+                <div class="ui-block-a left"></div>
                 <div class="ui-block-b center">
                     <a href="#home" class="ui-btn ui-btn-icon-left ui-btn-corner-all ui-icon-home" data-direction="reverse">Home</a>
                 </div>
@@ -145,14 +143,14 @@
         </div>
         
         <div data-role="main" class="ui-content">
-            <img class="loading" src="images/loading.gif"></img>
+            <img class="events-loading loading" src="images/loading.gif"></img>
             <ul class="events-event-list hidden" data-role="listview" data-autodividers="true" data-autodividers="true" data-hide-dividers="true" data-filter="true" data-filter-placeholder="Search Events">
             </ul>
         </div>
         
         <div data-role="footer" data-position="fixed">
             <div class="ui-grid-b footerWrapper">
-                <div class="ui-block-a left upButton"></div>
+                <div class="ui-block-a left"></div>
                 <div class="ui-block-b center">
                     <a href="#home" class="ui-btn ui-btn-icon-left ui-btn-corner-all ui-icon-home" data-direction="reverse">Home</a>
                 </div>
@@ -171,14 +169,14 @@
         </div>
         
         <div data-role="main" class="ui-content">
-            <img class="loading" src="images/loading.gif"></img>
+            <img class="entrySets-loading loading" src="images/loading.gif"></img>
             <ul class="entrySets-entrySet-list hidden" data-role="listview" data-filter="true" data-filter-placeholder="Search Lists" >
             </ul>
         </div>
         
         <div data-role="footer" data-position="fixed">
             <div class="ui-grid-b footerWrapper">
-                <div class="ui-block-a left upButton"></div>
+                <div class="ui-block-a left"></div>
                 <div class="ui-block-b center">
                     <a href="#home" class="ui-btn ui-btn-icon-left ui-btn-corner-all ui-icon-home" data-direction="reverse">Home</a>
                 </div>
@@ -199,7 +197,7 @@
             <h3 class="group-title center"></h3>
             <div class="group-description"></div>
                         
-            <div class="group-entrySets">
+<!--             <div class="group-entrySets">
                 <h3>Collaboration Lists</h3>
                 <ul class="group-entrySet-list" data-role="listview" data-inset="true">
                 </ul>
@@ -221,7 +219,7 @@
                 <h3>Regional Groups</h3>
                 <ul class="group-group-list" data-role="listview" data-inset="true">
                 </ul>
-            </div>
+            </div> -->
             
         </div>
     
@@ -253,7 +251,7 @@
             
             <div class="event-description"></div>
             
-            <div class="event-schedule">
+<!--             <div class="event-schedule">
                 <h3>Session Schedule</h3>
                 <ul class="event-schedule-list" data-role="listview" data-inset="true">
                 </ul>
@@ -269,7 +267,7 @@
                 <h3>Collaboration Lists</h3>
                 <ul class="event-entrySet-list" data-role="listview" data-inset="true">
                 </ul>
-            </div>
+            </div> -->
             
         </div>
     
