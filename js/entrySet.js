@@ -30,7 +30,8 @@ $(document).on("pagebeforeshow", "#entrySet", function(e, data) {
     }
     
     if (parent == null) {
-        alert(parentType + ' not found!');
+        messageLink.attr('data-message', 'This '+parentType+' does not currently exist on the site.');
+        messageLink.click();
     }
     
     if (parent.avatarPath != null) {

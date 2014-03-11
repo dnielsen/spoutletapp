@@ -1,12 +1,12 @@
-var campsiteApi  = 'http://www.campsite.org/api/mobile/';
-var campsiteData = null;
-var groups       = null;
-var events       = null;
 
-// Make mobile API call and populate Browse Groups and Upcoming Events pages
-$.getJSON(campsiteApi, null, function(campsiteData) {
+var groups      = null;
+var events      = null;
+var entrySets   = null;
+var entries     = null;
 
-    groups = campsiteData.groups;
+
+$.getJSON(getApiCall('groups', api_key), null, function(groups) {
+
     if (groups !== null) {
         var groupList = '';
         for (i = 0; i < groups.length; i++) {
@@ -18,13 +18,15 @@ $.getJSON(campsiteApi, null, function(campsiteData) {
         groupsList.append(groupList);
         listify(groupsList);
     }
+});
 
-    events = campsiteData.events;
+$.getJSON(getApiCall('events', api_key), null, function(events) {
+
     if (events !== null) {
         var eventList = '';
         for (i = 0; i < events.length; i++) {
             if (events[i].upcoming === true){
-                eventList += '<li data-daterange="'+events[i].startDateString+'"><a href="#event" data-p1=' + events[i].id + ' data-p2=' + events[i].group + '>' + events[i].name + '</a></li>';
+                eventList += '<li data-daterange="'+getDateRangeString(events[i].starts_at, events[i].ends_at)+'"><a href="#event" data-p1=' + events[i].id + ' data-p2=' + events[i].group_id + '>' + events[i].name + '</a></li>';
             }
         }
         var eventsList = $('.events-event-list');
@@ -39,21 +41,24 @@ $.getJSON(campsiteApi, null, function(campsiteData) {
         
         listify(eventsList);
     }
-    
-    entrySets = campsiteData.entrySets;
-    if (entrySets !== null) {
-        var entrySetList = '';
-        for (i = 0; i < entrySets.length; i++) {
-            entrySetList += '<li><a href="#entrySet" data-p1='+entrySets[i].id+' data-p2='+entrySets[i].parentType+' data-p3='+entrySets[i].parentId+'><h1>'+entrySets[i].name+'</h1><p>'+entrySets[i].parentName+'</p><p>'+entrySets[i].entries.length+' ideas</p></a></li>';
-        }
-        var entrySetsList = $('.entrySets-entrySet-list');
-        entrySetsList.append(entrySetList);
-        listify(entrySetsList);
-    }
-
-    $('.loading').hide();
-    $('.hidden').show();
-    
 });
+
+// $.getJSON(entrySetsRoute, null, function(entrySets) {
+    
+//     if (entrySets !== null) {
+//         var entrySetList = '';
+//         for (i = 0; i < entrySets.length; i++) {
+//             entrySetList += '<li><a href="#entrySet" data-p1='+entrySets[i].id+' data-p2='+entrySets[i].parentType+' data-p3='+entrySets[i].parentId+'><h1>'+entrySets[i].name+'</h1><p>'+entrySets[i].parentName+'</p><p>'+entrySets[i].entries.length+' ideas</p></a></li>';
+//         }
+//         var entrySetsList = $('.entrySets-entrySet-list');
+//         entrySetsList.append(entrySetList);
+//         listify(entrySetsList);
+//     }
+
+//     $('.loading').hide();
+//     $('.hidden').show();
+
+// });
+    
 
     

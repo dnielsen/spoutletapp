@@ -26,10 +26,12 @@ $(document).on("pagebeforeshow", "#event", function(e, data) {
     }
     
     if (event == null) {
-        alert('event not found!');
+        messageLink.data('message', 'This event does not currently exist on the site.');
+        messageLink.click();
     }
     if (group == null) {
-        alert('group not found!');
+        messageLink.data('message', 'This group does not currently exist on the site.');
+        messageLink.click();
     }
     
     if (event.avatarPath != null) {

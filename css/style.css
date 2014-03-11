@@ -3,7 +3,7 @@
 input, textarea  { -webkit-user-select:text; }
 
 body { 
-    background-color:white; 
+    background-color:#eee; 
     color:#2faad9;
 }
 a.btn {
@@ -66,4 +66,17 @@ a.btn:hover {
 }
 .hidden {
     display: none;
+}
+.login-form {
+    padding: 10px;
+    width: 90%;
+    max-width: 500px;
+    margin: 0 auto;
+}
+.redbtn {
+    background: red !important;
+}
+.redbtn:hover {
+    color: red !important;
+    background: white !important;
 }
