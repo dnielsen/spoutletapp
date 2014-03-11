@@ -41,6 +41,7 @@ a.btn:hover {
     width: 100%;
     min-height: 75px;
     max-height: 100px;
+    box-shadow: #999 0 3px 3px;
 }
 .logoBlock img {
     display: block;
