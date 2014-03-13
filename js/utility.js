@@ -11,25 +11,35 @@ api_key     = localStorage['api-key'];
  * auth1 
  *     - If using username/password, this is the username. 
  *     - If using api key, this is the api key
+ *     - If no auth needed, leave null
  * auth2 
  *     - If using username/password, this is the password. 
- *     - If using api key, do not include this parameter
+ *     - If using api key, leave null
+ * params
+ *     - Any additional parameters on the call
+ *     - i.e., expand, verbose, etc.
  */
-function getApiCall(route, auth1, auth2) {
+function getApiCall(route, auth1, auth2, params) {
 
     var api_call         = api_channel + '://';
     var api_host_segment = api_host;
 
-    if (arguments.length > 1) {
+    if (auth1 !== undefined && auth1 !== null) {
         api_call += auth1;
         api_host_segment = '@' + api_host_segment;
     }
 
-    if (arguments.length == 3) {
+    if (auth2 !== undefined && auth2 !== null) {
         api_call += ':' + auth2;
     }
-
-    api_call += api_host_segment + '/' + route + '?callback=?';
+    
+    if (params !== undefined && params !== null) {
+        route += '?' + params + '&callback=?';
+    } else {
+        route += '?callback=?';
+    }
+    
+    api_call += api_host_segment + '/' + route;
 
     return api_call;
 }
@@ -45,22 +55,26 @@ function getDateRangeString(starts_at, ends_at) {
     var start = new Date(starts_at);
     var end   = new Date(ends_at);
 
-    var startDate = monthNames[start.getMonth()]+' '+start.getDate();
-    var startYear = start.getFullYear();
+    var startDate = monthNames[start.getUTCMonth()]+' '+start.getUTCDate();
+    var startYear = start.getUTCFullYear();
 
-    var endDate = monthNames[end.getMonth()]+' '+end.getDate();
-    var endYear  = end.getFullYear();
+    var endDate = monthNames[end.getUTCMonth()]+' '+end.getUTCDate();
+    var endYear  = end.getUTCFullYear();
 
 
     if (startYear == endYear) {
-        return (startDate == endDate) ? startDate+', '+endYear : startDate+' - '+endDate+', '+startYear;
+        return (startDate == endDate) ? startDate+', '+startYear : startDate+' - '+endDate+', '+startYear;
     } else {
         return startDate+', '+startYear+' - '+endDate+', '+endYear;
     }
 }
 
 function getTimeRangeString(starts_at, ends_at) {
-    return '5:00 - 7:00';
+
+    var start = new Date(starts_at);
+    var end   = new Date(ends_at);
+
+    return start.toTimeString() + ' - ' + end.toTimeString();
 }
 
 /**
