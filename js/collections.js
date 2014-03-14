@@ -2,7 +2,7 @@ $(document).on("pagebeforeshow", "#groups", function(e, data) {
 
     $.getJSON(getApiCall('groups', null, null, 'fields=id,name,category&sort_by=name'), null, function(groups) {
 
-        var groupList = $('.groups-group-list');
+        var groupsList = $('.groups-group-list');
 
         if (groups !== null) {
             var groupHtml = '';
@@ -13,12 +13,12 @@ $(document).on("pagebeforeshow", "#groups", function(e, data) {
                 }
             }
 
-            groupList.html(groupHtml);
-            listify(groupList);
+            groupsList.html(groupHtml);
+            listify(groupsList);
         }
 
         $('.groups-loading').hide();
-        groupList.show();
+        groupsList.show();
     });
 });
 
@@ -26,7 +26,7 @@ $(document).on("pagebeforeshow", "#events", function(e, data) {
 
     $.getJSON(getApiCall('events', null, null, 'fields=id,name,starts_at,ends_at&sort_by=starts_at'), null, function(events) {
 
-        var eventList = $('.events-event-list');
+        var eventsList = $('.events-event-list');
 
         if (events !== null) {
             var eventHtml = '';
@@ -37,18 +37,18 @@ $(document).on("pagebeforeshow", "#events", function(e, data) {
                 }
             }
 
-            eventList.html(eventHtml);
-            eventList.listview({
+            eventsList.html(eventHtml);
+            eventsList.listview({
                 autodividers: true,
                 autodividersSelector: function (li) {
                     return $(li).data('daterange');
                 }
             });
             
-            listify(eventList);
+            listify(eventsList);
         }
          $('.events-loading').hide();
-         eventList.show();
+         eventsList.show();
     });
 });
 
@@ -56,7 +56,7 @@ $(document).on("pagebeforeshow", "#lists", function(e, data) {
 
     $.getJSON(getApiCall('lists/popular'), null, function(entrySets) {
 
-        var entrySetList = $('.entrySets-entrySet-list');
+        var entrySetsList = $('.entrySets-entrySet-list');
         
         if (entrySets !== null) {
             var entrySetHtml = '';
@@ -65,12 +65,12 @@ $(document).on("pagebeforeshow", "#lists", function(e, data) {
                 entrySetHtml += '<li><a href="#entrySet" data-p1='+entrySets[i].id+'><h1>'+entrySets[i].name+'</h1><p>Parent Name</p><p>'+entrySets[i].popularity+' ideas</p></a></li>';
             }
 
-            entrySetList.html(entrySetHtml);
-            listify(entrySetList);
+            entrySetsList.html(entrySetHtml);
+            listify(entrySetsList);
         }
 
         $('.entrySets-loading').hide();
-        entrySetList.show();
+        entrySetsList.show();
 
     });
 });
