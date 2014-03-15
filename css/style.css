@@ -6,6 +6,10 @@ body {
     background-color:#eee; 
     color:#2faad9;
 }
+h3 {
+    text-shadow: #bbb 1px 1px 1px;
+}
+
 a.btn {
     display: block;
     margin: 10px auto;
@@ -81,4 +85,8 @@ a.btn:hover {
 .redbtn:hover {
     color: red !important;
     background: white !important;
+}
+.event-info-button {
+    max-width: 300px;
+    margin: 0 auto;
 }
