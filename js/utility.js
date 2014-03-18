@@ -113,6 +113,19 @@ function getApiCall(route, params, auth1, auth2) {
 }
 
 /**
+ * Prepopulate username field from last login
+ */
+$(document).on('pageshow', '#login', function() {
+    if (username !== undefined) {
+        $('.username').val(username);
+        $('.password').focus();
+    }
+    else {
+        $('.username').focus();
+    }
+});
+
+/**
  * On login, authenticate with username/password to get API key and save it to local storage
  * All future calls requiring authentication will use the stored API key
  */
