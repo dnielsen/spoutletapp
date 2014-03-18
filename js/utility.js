@@ -64,8 +64,7 @@ $(document).on('pagebeforeshow', '#home', function(e, data) {
     if (api_key === undefined) {
         $('.login-link').show();
         $('.logout-link').hide();
-    }
-    else {
+    } else {
         $('.logout-link').show();
         $('.login-link').hide();
     }
@@ -141,7 +140,7 @@ $(document).on('click', '.login-submit', function() {
         $('.logout-link').show();
     });
 
-    $.mobile.navigate('#home', {transition: slideup});
+    $.mobile.navigate('#home', {transition: 'slideup'});
 });
 
 /**
@@ -153,7 +152,7 @@ $(document).on('click', '.logout-confirm', function() {
     $('.login-link').show();
     $('.logout-link').hide();
 
-    $.mobile.navigate('#home', {transition: slideup});
+    $.mobile.navigate('#home', {transition: 'slideup'});
 });
 
 /**
