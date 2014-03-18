@@ -1,10 +1,15 @@
-// On page load, configure jquery and get DOM elements
+// On app load, configure jquery and get DOM elements
 $(function() {
-    $.mobile.changePage.defaults.allowSamePageTransition = true;
+
     $.mobile.defaultPageTransition = 'slide';  
 
+    // This is necessary for navigating to a child/parent group, since it is the same "page"
+    $.mobile.changePage.defaults.allowSamePageTransition = true;
+
+    // Up button exists in footer of most pages, goes to either the items parent, or the collection it's in
     upButton                = $('.upButton');
 
+    // All Group Containers
     groupEntrySetDiv        = $('.group-entrySets');
     groupEntrySetList       = $('.group-entrySet-list');
     groupUpcomingEventsDiv  = $('.group-upcoming-events');
@@ -14,6 +19,7 @@ $(function() {
     groupChildrenDiv        = $('.group-children');
     groupChildrenList       = $('.group-children-list');
 
+    // All Event Containers
     eventScheduleDiv        = $('.event-schedule');
     eventScheduleList       = $('.event-schedule-list');
     eventUnscheduledDiv     = $('.event-unscheduled');
@@ -21,29 +27,18 @@ $(function() {
     eventEntrySetDiv        = $('.event-entrySets');
     eventEntrySetList       = $('.event-entrySet-list');
 
+    // All List Containers
     entrySetEntriesDiv      = $('.entrySet-entries');
     entrySetEntryList       = $('.entrySet-entry-list');
 
     // Host address for API calls
-    api_channel = 'http';
-    api_host    = 'localhost:3000';
-
-    // Check for credentials in localStorage, show login/logout links as needed
-    api_key  = localStorage['api_key'];
-    user_id  = localStorage['user_id'];
-    username = localStorage['username'];
-
-    if (api_key === null) {
-        $('.login-link').show();
-    }
-    else {
-        $('.logout-link').show();
-    }
+    api_channel             = 'http';
+    api_host                = 'localhost:3000';
 });
 
 /**
  * Links can pass data between pages by adding the data-px attribute
- * i.e, <a href="#group" data-p1=group_id>Group Name</a>
+ * i.e, <a href="#group" data-p1=16>Group Sixteen</a>
  */
 store = {
     p1: null,
@@ -54,6 +49,26 @@ $(document).on('click', 'a', function(){
     store.p1 = $(this).data('p1');
     store.p2 = $(this).data('p2');
     store.p3 = $(this).data('p3');
+});
+
+/**
+ * Get user credentials from localStorage, show login/logout links as needed
+ * Only need to check for api_key, as that is the only thing deleted on logout
+ */
+$(document).on('pagebeforeshow', '#home', function(e, data) {
+
+    api_key  = localStorage['api_key'];
+    user_id  = localStorage['user_id'];
+    username = localStorage['username'];
+
+    if (api_key === undefined) {
+        $('.login-link').show();
+        $('.logout-link').hide();
+    }
+    else {
+        $('.logout-link').show();
+        $('.login-link').hide();
+    }
 });
 
 /**
@@ -102,21 +117,6 @@ function getApiCall(route, params, auth1, auth2) {
  * All future calls requiring authentication will use the stored API key
  */
 $(document).on('click', '.login-submit', function() {
-    var username = $('.username').val();
-    var password = $('.password').val();
-
-    $.getJSON( getApiCall('api_key', null, username, password) , function (user_data) {
-        localStorage.setItem('api_key',  user_data.api_key);
-        localStorage.setItem('user_id',  user_data.id);
-        localStorage.setItem('username', user_data.username);
-        $('.login-link').hide();
-        $('.logout-link').show();
-    });
-
-    $.mobile.navigate('#home', {transition: slideup});
-});
-
-$(document).on('pageload', '.login-submit', function() {
     var username = $('.username').val();
     var password = $('.password').val();
 
