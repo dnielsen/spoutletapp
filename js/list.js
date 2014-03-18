@@ -14,11 +14,11 @@ $(document).on("pagebeforeshow", "#list", function(e, data) {
     
     $.getJSON(getApiCall('lists/'+entry_set_id), null, function(entrySet){
 
-        $.getJSON(getApiCall('lists/'+entry_set_id+'/sorted'), null, function(entries) {
+        $.getJSON(getApiCall('entries', 'fields=id,name&entrySet_id='+entry_set_id), null, function(entries) {
             if (entries.length > 0) {
                 var entriesHtml = '';
                 for (i = 0; i < entries.length; i++) {
-                    entriesHtml += '<li><a href="#entry" data-p1='+entries[i].id+'>'+entries[i].name+'<p>'+entries[i].popularity+' votes</p></a></li>';
+                    entriesHtml += '<li><a href="#entry" data-p1='+entries[i].id+'>'+entries[i].name+'<p>'+entries[i].popularity+' votes</p></a><a href="javascript:void(0);" id="vote" data-id='+entries[i].id+' data-icon="arrow-u" class="voteBtn"></a></li>';
                 }
                 entrySetEntryList.html(entriesHtml);
                 listify(entrySetEntryList);
