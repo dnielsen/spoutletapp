@@ -1,23 +1,80 @@
+// Clear out all the data when you leave the page
+$(document).on("pagebeforehide", "#event", function(e, data) {
+
+    eventScheduleDiv.hide();
+    eventScheduleList.empty();
+
+    eventUnscheduledDiv.hide();
+    eventUnscheduledList.empty();
+
+    eventEntrySetList.empty();
+    eventEntrySetDiv.hide();
+});
+
 $(document).on("pagebeforeshow", "#event", function(e, data) {
 
-    var eventId  = store.p1;
-    
-    $.getJSON(getApiCall('events/'+eventId), null, function(event) {
+    var event_id = store.p1;
 
-        if (event === null) {
-            alert('event not found!');
-            $.mobile.navigate('#events');
-        }
+    if (event_id === null) {
+        $.mobile.navigate('#events');
+    }
+    
+    $.getJSON(getApiCall('events/'+event_id, 'fields=id,name,content,starts_at,ends_at,location,address1,address2,group_id,entrySetRegistration_id'), null, function(event) {
+
+        $.getJSON(getApiCall('sessions', 'event_id='+event_id+'&sort_by=starts_at'), null, function(sessions) {
+
+            if (sessions.length > 0) {
+                var sessionsHtml = '';
+                var unscheduledSessionsHtml = '';
+                
+                for (i = 0; i < sessions.length; i++) {
+                    if (sessions[i].starts_at !== null) {
+                        sessionsHtml += '<li data-datestring="'+getDateRangeString(sessions[i].starts_at, sessions[i].ends_at)+'"><a href="#session" data-p1='+sessions[i].id+'>'+sessions[i].name+'<p>'+getTimeRangeString(sessions[i].starts_at, sessions[i].ends_at)+'</p></a></li>';
+                    } else {
+                        unscheduledSessionsHtml += '<li><a href="#session" data-p1='+sessions[i].id+'>'+sessions[i].name+'</a></li>';
+                    }
+                }
+                if (sessionsHtml.length > 0) {
+                    eventScheduleList.html(sessionsHtml);
+                    eventScheduleList.listview({
+                        autodividers: true,
+                        autodividersSelector: function (li) {
+                            return $(li).data('datestring');
+                        }
+                    });
+                    listify(eventScheduleList);
+                    eventScheduleDiv.slideDown(); 
+                }
+
+                if (unscheduledSessionsHtml.length > 0) {
+                    eventUnscheduledList.html(unscheduledSessionsHtml);
+                    listify(eventUnscheduledList);
+                    eventUnscheduledDiv.slideDown();
+                }
+            }
+        });
+
+        $.getJSON(getApiCall('lists', 'fields=id,name&entrySetRegistration_id='+event.entrySetRegistration_id), null, function(entrySets) {
+
+            if (entrySets.length > 0) {
+                var entrySetsHtml = '';
+                for (i = 0; i < entrySets.length; i++) {
+                    entrySetsHtml += '<li><a href="#list" data-p1=' + entrySets[i].id+'>' + entrySets[i].name + '</a></li>';
+                }
+                eventEntrySetList.html(entrySetsHtml);
+                listify(eventEntrySetList);
+                eventEntrySetDiv.slideDown();
+            }
+        });
 
         /*if (event.avatarPath !== null) {
             $('.event-logo').attr('src', event.avatarPath);
         } else {*/
-            $('.event-logo').attr('src', "images/logo-campsite-GA.png");
+        $('.event-logo').attr('src', "images/logo-campsite-GA.png");
         //}
 
         $('.event-title').html(event.name);
         $('.event-description').html('<p>'+event.content+'</p>');
-        
         
         var eventInfo = '';
         
@@ -41,67 +98,8 @@ $(document).on("pagebeforeshow", "#event", function(e, data) {
         }
         
         $('#event-info').html(eventInfo);
-        
-        /*var scheduleList    = $('.event-schedule-list');
-        var unscheduledList = $('.event-unscheduled-list');
-        var scheduleDiv     = $('.event-schedule');
-        var unscheduledDiv  = $('.event-unscheduled');
-        
-        if (event.sessions != null ) {
-            var sessions = '';
-            var unscheduledSessions = '';
-            
-            for (i = 0; i < event.sessions.length; i++) {
-                if (event.sessions[i].time != null) {
-                    sessions += '<li data-datestring="'+event.sessions[i].date+'"><a href="#session" data-p1=' + event.sessions[i].id + ' data-p2=' + eventId + '>' + event.sessions[i].name+'<p>'+event.sessions[i].time+'</p></a></li>';
-                } else {
-                    unscheduledSessions += '<li><a href="#session" data-p1=' + event.sessions[i].id + ' data-p2=' + eventId + '>' + event.sessions[i].name+'</a></li>';
-                }
-            }
-            
-            scheduleList.html(sessions);
-            unscheduledList.html(unscheduledSessions);
-            
-            scheduleList.listview({
-                autodividers: true,
-                autodividersSelector: function (li) {
-                    return $(li).data('datestring');
-                }
-            });
-            
-            if (sessions.length > 0) {
-                listify(scheduleList);
-                scheduleDiv.show();
-            } else {
-                scheduleList.empty();
-                scheduleDiv.hide();   
-            }
-            if (unscheduledSessions.length > 0) {
-                listify(unscheduledList);
-                unscheduledDiv.show();
-            } else {
-                unscheduledList.empty();
-                unscheduledDiv.hide();   
-            }
-        }
-        
-        var eventEntrySetList = $('.event-entrySet-list');
-        var eventEntrySetDiv  = $('.event-entrySets');
-        
-        if (event.entrySets != null && event.entrySets.length > 0){
-            var entrySets = '';
-            for (i = 0; i < event.entrySets.length; i++) {
-                entrySets += '<li><a href="#entrySet" data-p1=' + event.entrySets[i].id + ' data-p2="event" data-p3='+event.id+'>' + event.entrySets[i].name + '</a></li>';
-            }
-            eventEntrySetList.html(entrySets);
-            listify(eventEntrySetList);
-            eventEntrySetDiv.show();
-        } else {
-            eventEntrySetList.empty();
-            eventEntrySetDiv.hide();
-        }
-        */
-        upButton.html('<a href="#group" class="ui-btn ui-icon-arrow-l ui-btn-icon-left" data-p1='+event.group_id+' data-direction="reverse">Group</a>');
 
+        upButton.html('<a href="#group" class="ui-btn ui-icon-arrow-l ui-btn-icon-left" data-p1='+event.group_id+' data-direction="reverse">Group</a>');
+        
     });
 });

@@ -1,6 +1,6 @@
 $(document).on("pagebeforeshow", "#groups", function(e, data) {
 
-    $.getJSON(getApiCall('groups', null, null, 'fields=id,name,category&sort_by=name'), null, function(groups) {
+    $.getJSON(getApiCall('groups', 'fields=id,name,category&sort_by=name'), null, function(groups) {
 
         var groupsList = $('.groups-group-list');
 
@@ -24,7 +24,7 @@ $(document).on("pagebeforeshow", "#groups", function(e, data) {
 
 $(document).on("pagebeforeshow", "#events", function(e, data) {
 
-    $.getJSON(getApiCall('events', null, null, 'fields=id,name,starts_at,ends_at&sort_by=starts_at'), null, function(events) {
+    $.getJSON(getApiCall('events', 'fields=id,name,starts_at,ends_at&sort_by=starts_at'), null, function(events) {
 
         var eventsList = $('.events-event-list');
 
@@ -62,7 +62,7 @@ $(document).on("pagebeforeshow", "#lists", function(e, data) {
             var entrySetHtml = '';
 
             for (i = 0; i < entrySets.length; i++) {
-                entrySetHtml += '<li><a href="#entrySet" data-p1='+entrySets[i].id+'><h1>'+entrySets[i].name+'</h1><p>Parent Name</p><p>'+entrySets[i].popularity+' ideas</p></a></li>';
+                entrySetHtml += '<li><a href="#list" data-p1='+entrySets[i].id+'><h1>'+entrySets[i].name+'</h1><p>Parent Name</p><p>'+entrySets[i].popularity+' ideas</p></a></li>';
             }
 
             entrySetsList.html(entrySetHtml);
