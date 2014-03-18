@@ -33,7 +33,7 @@ $(function() {
 
     // Host address for API calls
     api_channel             = 'http';
-    api_host                = 'localhost:3000';
+    api_host                = 'api.campsite.org';
 });
 
 /**
