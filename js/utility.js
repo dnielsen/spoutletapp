@@ -38,7 +38,6 @@ $(function() {
     }
     else {
         $('.logout-link').show();
-        console.log(user_id+':'+username+':'+api_key);
     }
 });
 
