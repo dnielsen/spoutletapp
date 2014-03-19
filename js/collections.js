@@ -1,6 +1,6 @@
 $(document).on("pagebeforeshow", "#groups", function(e, data) {
 
-    $.getJSON(getApiCall('groups', 'fields=id,name,category&sort_by=name'), null, function(groups) {
+    $.getJSON(getApiCall('groups', 'fields=id,name,category&sort_by=-name'), null, function(groups) {
 
         var groupsList = $('.groups-group-list');
 
