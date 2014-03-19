@@ -12,7 +12,7 @@ $(document).on("pagebeforeshow", "#list", function(e, data) {
     }
     
     // Get general data about the list
-    $.getJSON(getApiCall('lists/'+entry_set_id), null, function(entrySet) {
+    $.getJSON(getApiCall('lists/'+entry_set_id, 'fields=name,description,parent'), null, function(entrySet) {
 
         // if (parent.avatarPath != null) {
         //     $('.entrySet-logo').attr('src', parent.avatarPath);
@@ -130,7 +130,7 @@ $(document).on('click', '.vote', function() {
         $(this).data('action', 'unvote');
         $(this).buttonMarkup({ icon: "arrow-d" });
         num_votes++;
-        
+
     } else {
 
         // $.ajax({

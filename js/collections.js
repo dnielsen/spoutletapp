@@ -54,7 +54,7 @@ $(document).on("pagebeforeshow", "#events", function(e, data) {
 
 $(document).on("pagebeforeshow", "#lists", function(e, data) {
 
-    $.getJSON(getApiCall('lists', 'fields=id,name,parent,list_size&sort_by=-list_size.size'), null, function(entrySets) {
+    $.getJSON(getApiCall('lists', 'fields=id,name,parent,list_size&sort_by=list_size'), null, function(entrySets) {
 
         var entrySetsList = $('.entrySets-entrySet-list');
         
@@ -62,8 +62,8 @@ $(document).on("pagebeforeshow", "#lists", function(e, data) {
             var entrySetHtml = '';
 
             for (i = 0; i < entrySets.length; i++) {
-                if (entrySets[i].list_size.size === null) { entrySets[i].list_size.size = 0; }
-                entrySetHtml += '<li><a href="#list" data-p1='+entrySets[i].id+'><h1>'+entrySets[i].name+'</h1><p>'+entrySets[i].parent.name+'</p><p>'+entrySets[i].list_size.size+' entries</p></a></li>';
+                if (entrySets[i].list_size === null) { entrySets[i].list_size = 0; }
+                entrySetHtml += '<li><a href="#list" data-p1='+entrySets[i].id+'><h1>'+entrySets[i].name+'</h1><p>'+entrySets[i].parent.name+'</p><p>'+entrySets[i].list_size+' entries</p></a></li>';
             }
 
             entrySetsList.html(entrySetHtml);
