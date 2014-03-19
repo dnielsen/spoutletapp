@@ -25,12 +25,7 @@ $(document).on("pagebeforeshow", "#list", function(e, data) {
         if (entrySet.description !== null) {
             $('.entrySet-description').html('<p>'+entrySet.description+'</p>');    
         }
-        
-        var parentType = 'Event';
-        if (entrySet.entrySetRegistration.scope == 'GroupBundle:Group') {
-            parentType = 'Group';
-        }
-        upButton.html('<a href="#'+parentType.toLowerCase()+'" class="ui-btn ui-icon-arrow-l ui-btn-icon-left" data-p1='+entrySet.entrySetRegistration.containerId+' data-direction="reverse">'+parentType+'</a>');
+        upButton.html('<a href="#'+entrySet.parent.type.toLowerCase()+'" class="ui-btn ui-icon-arrow-l ui-btn-icon-left" data-p1='+entrySet.parent.id+' data-direction="reverse">'+entrySet.parent.type+'</a>');
     });
 
     // Get the entries for the list, sorted by id
