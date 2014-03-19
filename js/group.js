@@ -34,7 +34,7 @@ $(document).on("pagebeforeshow", "#group", function(e, data) {
 
                 groupEntrySetList.html(entrySetsHtml);
                 listify(groupEntrySetList);
-                groupEntrySetDiv.slideDown();
+                groupEntrySetDiv.show();
             }
         });
 
@@ -49,7 +49,7 @@ $(document).on("pagebeforeshow", "#group", function(e, data) {
 
                 groupUpcomingEventsList.html(upcomingEventsHtml);
                 listify(groupUpcomingEventsList);
-                groupUpcomingEventsDiv.slideDown();
+                groupUpcomingEventsDiv.show();
             }
         });
 
@@ -64,7 +64,7 @@ $(document).on("pagebeforeshow", "#group", function(e, data) {
 
                 groupPastEventsList.html(pastEventsHtml);
                 listify(groupPastEventsList);
-                groupPastEventsDiv.slideDown();
+                groupPastEventsDiv.show();
             }
         });
 
@@ -79,7 +79,7 @@ $(document).on("pagebeforeshow", "#group", function(e, data) {
 
                 groupChildrenList.html(childrenHtml);
                 listify(groupChildrenList);
-                groupChildrenDiv.slideDown();
+                groupChildrenDiv.show();
             }
 
         });

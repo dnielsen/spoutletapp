@@ -43,13 +43,13 @@ $(document).on("pagebeforeshow", "#event", function(e, data) {
                         }
                     });
                     listify(eventScheduleList);
-                    eventScheduleDiv.slideDown(); 
+                    eventScheduleDiv.show(); 
                 }
 
                 if (unscheduledSessionsHtml.length > 0) {
                     eventUnscheduledList.html(unscheduledSessionsHtml);
                     listify(eventUnscheduledList);
-                    eventUnscheduledDiv.slideDown();
+                    eventUnscheduledDiv.show();
                 }
             }
         });
@@ -63,7 +63,7 @@ $(document).on("pagebeforeshow", "#event", function(e, data) {
                 }
                 eventEntrySetList.html(entrySetsHtml);
                 listify(eventEntrySetList);
-                eventEntrySetDiv.slideDown();
+                eventEntrySetDiv.show();
             }
         });
 
