@@ -86,13 +86,16 @@ $(document).on("pagebeforeshow", "#list", function(e, data) {
                 var entriesHtml = '';
                 for (var i = 0; i < entries.length; i++) {
 
-                    entriesHtml += '<li><a href="#entry" data-p1='+entries[i].id+'>'+entries[i].name+'<p>'+entries[i].num_votes+' votes</p></a><a href="javascript:void(0);" data-id='+entries[i].id;
+                    entriesHtml += '<li><a href="#entry" data-p1='+entries[i].id+'>'+entries[i].name+'<p id="num-votes-'+entries[i].id+'">'+entries[i].num_votes+' votes</p></a>';
 
-                    if (entries[i].voted !== undefined) {
-                        entriesHtml += ' class="unVoteBtn" data-icon="arrow-d"></a></li>';
-                    } else {
-                        entriesHtml += ' class="voteBtn" data-icon="arrow-u"></a></li>';
+                    if (api_key !== undefined) {
+                        if (entries[i].voted !== undefined) {
+                            entriesHtml += '<a href="javascript:void(0);" data-id='+entries[i].id+' class="vote unVoteBtn" data-icon="arrow-d" data-action="unvote"></a>';
+                        } else {
+                            entriesHtml += '<a href="javascript:void(0);" data-id='+entries[i].id+' class="vote voteBtn" data-icon="arrow-u" data-action="vote"></a>';
+                        }
                     }
+                    entriesHtml += '</li>';
                 }
                 entrySetEntryList.html(entriesHtml);
                 listify(entrySetEntryList);
@@ -100,4 +103,51 @@ $(document).on("pagebeforeshow", "#list", function(e, data) {
             }
         });
     });
+});
+
+$(document).on('click', '.vote', function() {
+
+    var entry_id = $(this).data('id');
+    var action = $(this).data('action');
+    var votes = $('#num-votes-'+entry_id);
+    var num_votes = votes.html().split(' ')[0];
+
+    if (action == 'vote') {
+
+        $.ajax({
+            type: 'POST',
+            url: 'http://api.campsite.org/votes',
+            xhrFields: {
+                withCredentials: true
+            },
+            crossDomain: true,
+            username: api_key,
+            data: {'idea': entry_id},
+            dataType: 'json'
+        });
+
+        $(this).removeClass('voteBtn').addClass('unVoteBtn');
+        $(this).data('action', 'unvote');
+        $(this).buttonMarkup({ icon: "arrow-d" });
+        num_votes++;
+        
+    } else {
+
+        // $.ajax({
+        //     type: 'DELETE',
+        //     url: 'http://api.campsite.org/votes/'+entry_id,
+        //     xhrFields: {
+        //         withCredentials: true
+        //     },
+        //     crossDomain: true,
+        //     username: api_key,
+        //     dataType: 'json'
+        // });
+
+        $(this).removeClass('unVoteBtn').addClass('voteBtn');
+        $(this).data('action', 'vote');
+        $(this).buttonMarkup({ icon: "arrow-u" });
+        num_votes--;
+    }
+    votes.html(num_votes + ' votes');
 });
