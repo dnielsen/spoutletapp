@@ -62,7 +62,6 @@ $(document).on("pagebeforeshow", "#lists", function(e, data) {
             var entrySetHtml = '';
 
             for (i = 0; i < entrySets.length; i++) {
-                if (entrySets[i].list_size === null) { entrySets[i].list_size = 0; }
                 entrySetHtml += '<li><a href="#list" data-p1='+entrySets[i].id+'><h1>'+entrySets[i].name+'</h1><p>'+entrySets[i].parent.name+'</p><p>'+entrySets[i].list_size+' entries</p></a></li>';
             }
 
