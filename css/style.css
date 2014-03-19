@@ -90,7 +90,10 @@ a.btn:hover {
     max-width: 300px;
     margin: 0 auto;
 }
-
+.voteBtn, .unVoteBtn {
+    width: 12% !important;
+    max-width: 100px !important;
+}
 .voteBtn {
     background: #2faad9 !important;
 }
