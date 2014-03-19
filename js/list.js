@@ -116,12 +116,10 @@ $(document).on('click', '.vote', function() {
 
         $.ajax({
             type: 'POST',
-            url: 'http://api.campsite.org/votes',
-            xhrFields: {
-                withCredentials: true
+            url: api_channel+'://'+api_host+'/votes',
+            beforeSend: function (request) {
+                request.setRequestHeader("x-api-key", api_key);
             },
-            crossDomain: true,
-            username: api_key,
             data: {'idea': entry_id},
             dataType: 'json'
         });
@@ -133,16 +131,14 @@ $(document).on('click', '.vote', function() {
 
     } else {
 
-        // $.ajax({
-        //     type: 'DELETE',
-        //     url: 'http://api.campsite.org/votes/'+entry_id,
-        //     xhrFields: {
-        //         withCredentials: true
-        //     },
-        //     crossDomain: true,
-        //     username: api_key,
-        //     dataType: 'json'
-        // });
+        $.ajax({
+            type: 'DELETE',
+            url: api_channel+'://'+api_host+'/votes/'+entry_id,
+            beforeSend: function (request) {
+                request.setRequestHeader("x-api-key", api_key);
+            },
+            dataType: 'json'
+        });
 
         $(this).removeClass('unVoteBtn').addClass('voteBtn');
         $(this).data('action', 'vote');
