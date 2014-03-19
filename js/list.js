@@ -39,36 +39,39 @@ $(document).on("pagebeforeshow", "#list", function(e, data) {
         // Get votes for all entries in this list, sorted by entry id
         $.getJSON(getApiCall('votes', 'fields=idea,user&idea_details="entrySet_id='+entry_set_id+'"&sort_by=idea'), null, function(votes) {
 
+            // Assign the initial number of votes for each entry to 0
+            $.each(entries, function() {
+                this.num_votes = 0;
+            });
+
             if (votes.length > 0) {
-                var this_entry_id = votes[0].idea;
                 var vote_counter  = 0;
                 var entry_idx     = 0;
 
                 // Iterate through the votes and update the data in the entry list
                 for (var v in votes) {
 
-                    // Fast forward past entries that don't have votes
+                    // If we are done with this entry, record the number of votes and reset the counter
+                    if (votes[v].idea != entries[entry_idx].id) {
+                        entries[entry_idx].num_votes = vote_counter;
+                        vote_counter = 0;
+                    } 
+
+                    // Every vote has an entry, but some entries do not have votes
+                    // Fast forward the entry_idx until it matches the current vote
                     for (; entry_idx < entries.length; entry_idx++) {
-                        if (entries[entry_idx].id == this_entry_id) {
+                        if (entries[entry_idx].id == votes[v].idea) {
                             break;
                         }
                     }
-                    
-                    // // If this vote was made by the current user, change the vote button for this entry to an unvote button
-                    // if (votes[v].user == username) {
-                    //     entries[entry_idx].voted = true;
-                    // }
-
-                    // If we are done with this entry, record the number of votes, reset the counter, and move on to the next one
-                    if (votes[v].idea != this_entry_id) {
-                        entries[entry_idx].num_votes = vote_counter;
-                        entry_idx++;
-                        vote_counter = 0;
-                        this_entry_id = votes[v].idea;
-                    } 
 
                     // Increment the vote counter for the current entry
                     vote_counter++;
+
+                    // If this vote was made by the current user, change the vote button for this entry to an unvote button
+                    if (votes[v].user == username) {
+                        entries[entry_idx].voted = true;
+                    }
 
                     // If this is the last vote, record the number of votes now, as there won't be another iteration to do it in
                     if (v == votes.length-1) {
@@ -80,8 +83,6 @@ $(document).on("pagebeforeshow", "#list", function(e, data) {
 
             // Sort entry list by number of votes
             entries.sort(function(a, b) {
-                if (a.num_votes === undefined) { a.num_votes = 0; }
-                if (b.num_votes === undefined) { b.num_votes = 0; }
                 return b.num_votes - a.num_votes;
             });
 
@@ -92,11 +93,11 @@ $(document).on("pagebeforeshow", "#list", function(e, data) {
 
                     entriesHtml += '<li><a href="#entry" data-p1='+entries[i].id+'>'+entries[i].name+'<p>'+entries[i].num_votes+' votes</p></a><a href="javascript:void(0);" data-id='+entries[i].id;
 
-                    // if (entries[i].voted !== undefined) {
-                    //     entriesHtml += ' class="unVoteBtn" data-icon="arrow-d"></a></li>';
-                    // } else {
+                    if (entries[i].voted !== undefined) {
+                        entriesHtml += ' class="unVoteBtn" data-icon="arrow-d"></a></li>';
+                    } else {
                         entriesHtml += ' class="voteBtn" data-icon="arrow-u"></a></li>';
-                    // }
+                    }
                 }
                 entrySetEntryList.html(entriesHtml);
                 listify(entrySetEntryList);
