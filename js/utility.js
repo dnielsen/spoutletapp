@@ -144,11 +144,13 @@ $(document).on('click', '.login-submit', function() {
 });
 
 /**
- * Remove api key from local storage when user asks to logout
+ * Remove credentials from local storage when user asks to logout
  */
 $(document).on('click', '.logout-confirm', function() {
 
     localStorage.removeItem('api_key');
+    localStorage.removeItem('user_id');
+    localStorage.removeItem('username');
     $('.login-link').show();
     $('.logout-link').hide();
 
