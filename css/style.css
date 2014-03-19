@@ -93,10 +93,11 @@ a.btn:hover {
 .voteBtn, .unVoteBtn {
     width: 12% !important;
     max-width: 100px !important;
+    opacity: 0.9;
 }
 .voteBtn {
     background: #2faad9 !important;
 }
 .unVoteBtn {
-    background: red !important;
+    background: #00A22D !important;
 }
