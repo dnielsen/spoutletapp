@@ -24,7 +24,7 @@ $(document).on("pagebeforeshow", "#groups", function(e, data) {
 
 $(document).on("pagebeforeshow", "#events", function(e, data) {
 
-    $.getJSON(getApiCall('events', 'fields=id,name,starts_at,ends_at&sort_by=starts_at&private=0'), null, function(events) {
+    $.getJSON(getApiCall('events', 'fields=id,name,starts_at,ends_at&sort_by=-starts_at&private=0'), null, function(events) {
 
         var eventsList = $('.events-event-list');
 

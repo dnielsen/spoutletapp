@@ -21,7 +21,7 @@ $(document).on("pagebeforeshow", "#event", function(e, data) {
     
     $.getJSON(getApiCall('events/'+event_id, 'fields=id,name,content,starts_at,ends_at,location,address1,address2,group_id,entrySetRegistration_id'), null, function(event) {
 
-        $.getJSON(getApiCall('sessions', 'event_id='+event_id+'&sort_by=starts_at'), null, function(sessions) {
+        $.getJSON(getApiCall('sessions', 'event_id='+event_id+'&sort_by=-starts_at'), null, function(sessions) {
 
             if (sessions.length > 0) {
                 var sessionsHtml = '';
