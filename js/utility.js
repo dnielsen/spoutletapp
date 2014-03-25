@@ -168,11 +168,11 @@ function getDateRangeString(starts_at, ends_at) {
     var start = new Date(starts_at);
     var end   = new Date(ends_at);
 
-    var startDate = monthNames[start.getMonth()]+' '+start.getDate();
-    var startYear = start.getFullYear();
+    var startDate = monthNames[start.getUTCMonth()]+' '+start.getUTCDate();
+    var startYear = start.getUTCFullYear();
 
-    var endDate = monthNames[end.getMonth()]+' '+end.getDate();
-    var endYear  = end.getFullYear();
+    var endDate = monthNames[end.getUTCMonth()]+' '+end.getUTCDate();
+    var endYear  = end.getUTCFullYear();
 
     if (startYear == endYear) {
         return (startDate == endDate) ? startDate+', '+startYear : startDate+' - '+endDate+', '+startYear;
@@ -190,8 +190,8 @@ function getTimeRangeString(starts_at, ends_at) {
     var start       = new Date(starts_at);
     var end         = new Date(ends_at);
 
-    var startHours  = start.getHours();
-    var endHours    = end.getHours();
+    var startHours  = start.getUTCHours();
+    var endHours    = end.getUTCHours();
     var startSuffix = 'am';
     var endSuffix   = 'am';
 
@@ -204,8 +204,8 @@ function getTimeRangeString(starts_at, ends_at) {
         endSuffix = 'pm';
     }
 
-    var startMinutes = start.getMinutes();
-    var endMinutes   = end.getMinutes();
+    var startMinutes = start.getUTCMinutes();
+    var endMinutes   = end.getUTCMinutes();
 
     if (startMinutes < 10) {
         startMinutes = '0' + startMinutes;
