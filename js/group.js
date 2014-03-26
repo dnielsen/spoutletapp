@@ -21,9 +21,9 @@ $(document).on("pagebeforeshow", "#group", function(e, data) {
         $.mobile.navigate('#groups');
     }
     
-    $.getJSON(getApiCall('groups/'+group_id, 'fields=id,name,description,entrySetRegistration_id,parentGroup_id'), null, function(group) {
+    $.getJSON(getApiCall('groups/'+group_id, 'fields=id,name,description,entrySetRegistration_id,parentGroup_id'), function(group) {
 
-        $.getJSON(getApiCall('lists', 'fields=id,name&entrySetRegistration_id='+group.entrySetRegistration_id), null, function(lists) {
+        $.getJSON(getApiCall('lists', 'fields=id,name&entrySetRegistration_id='+group.entrySetRegistration_id), function(lists) {
 
             if (lists !== null && lists.length > 0) {
                 var entrySetsHtml = '';
@@ -38,7 +38,7 @@ $(document).on("pagebeforeshow", "#group", function(e, data) {
             }
         });
 
-        $.getJSON(getApiCall('events', 'fields=id,name&group_id='+group_id+'&private=0&starts_at=>'+(new Date()).toString()), null, function(upcomingEvents) {
+        $.getJSON(getApiCall('events', 'fields=id,name&group_id='+group_id+'&private=0&starts_at=>'+(new Date()).toString()), function(upcomingEvents) {
 
             if (upcomingEvents.length > 0) {
                 var upcomingEventsHtml = '';
@@ -53,7 +53,7 @@ $(document).on("pagebeforeshow", "#group", function(e, data) {
             }
         });
 
-        $.getJSON(getApiCall('events', 'fields=id,name&group_id='+group_id+'&private=0&ends_at=<'+(new Date()).toString()), null, function(pastEvents) {
+        $.getJSON(getApiCall('events', 'fields=id,name&group_id='+group_id+'&private=0&ends_at=<'+(new Date()).toString()), function(pastEvents) {
 
             if (pastEvents.length > 0) {
                 var pastEventsHtml = '';
@@ -68,7 +68,7 @@ $(document).on("pagebeforeshow", "#group", function(e, data) {
             }
         });
 
-        $.getJSON(getApiCall('groups', 'fields=id,name&parentGroup_id='+group_id), null, function(regionalGroups) {
+        $.getJSON(getApiCall('groups', 'fields=id,name&parentGroup_id='+group_id), function(regionalGroups) {
 
             if (regionalGroups.length > 0){
                 var childrenHtml = '';

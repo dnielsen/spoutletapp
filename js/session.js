@@ -6,7 +6,7 @@ $(document).on("pagebeforeshow", "#session", function(e, data) {
         $.mobile.navigate('#home');
     }
 
-    $.getJSON(getApiCall('sessions/'+session_id, 'fields=name,starts_at,ends_at,content,event_id'), null, function(session) {
+    $.getJSON(getApiCall('sessions/'+session_id, 'fields=name,starts_at,ends_at,content,event_id'), function(session) {
         
         // if (event.avatarPath != null) {
         //     $('.session-logo').attr('src', event.avatarPath);

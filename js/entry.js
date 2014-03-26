@@ -6,7 +6,7 @@ $(document).on("pagebeforeshow", "#entry", function(e, data) {
         $.mobile.navigate('#home');
     }
 
-    $.getJSON(getApiCall('entries/'+entry_id, 'fields=name,description,entrySet_id'), null, function(entry) {
+    $.getJSON(getApiCall('entries/'+entry_id, 'fields=name,description,entrySet_id'), function(entry) {
         
         // if (entrySet.avatarPath !== null) {
         //     $('.entry-logo').attr('src', entrySet.avatarPath);

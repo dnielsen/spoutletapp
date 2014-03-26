@@ -19,9 +19,9 @@ $(document).on("pagebeforeshow", "#event", function(e, data) {
         $.mobile.navigate('#events');
     }
     
-    $.getJSON(getApiCall('events/'+event_id, 'fields=id,name,content,starts_at,ends_at,location,address1,address2,group_id,entrySetRegistration_id'), null, function(event) {
+    $.getJSON(getApiCall('events/'+event_id, 'fields=id,name,content,starts_at,ends_at,location,address1,address2,group_id,entrySetRegistration_id'), function(event) {
 
-        $.getJSON(getApiCall('sessions', 'event_id='+event_id+'&sort_by=-starts_at'), null, function(sessions) {
+        $.getJSON(getApiCall('sessions', 'event_id='+event_id+'&sort_by=-starts_at'), function(sessions) {
 
             if (sessions.length > 0) {
                 var sessionsHtml = '';
@@ -54,7 +54,7 @@ $(document).on("pagebeforeshow", "#event", function(e, data) {
             }
         });
 
-        $.getJSON(getApiCall('lists', 'fields=id,name&entrySetRegistration_id='+event.entrySetRegistration_id), null, function(entrySets) {
+        $.getJSON(getApiCall('lists', 'fields=id,name&entrySetRegistration_id='+event.entrySetRegistration_id), function(entrySets) {
 
             if (entrySets.length > 0) {
                 var entrySetsHtml = '';

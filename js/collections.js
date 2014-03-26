@@ -1,6 +1,6 @@
 $(document).on("pagebeforeshow", "#groups", function(e, data) {
 
-    $.getJSON(getApiCall('groups', 'fields=id,name,category&sort_by=-name'), null, function(groups) {
+    $.getJSON(getApiCall('groups', 'fields=id,name,category&sort_by=-name'), function(groups) {
 
         var groupsList = $('.groups-group-list');
 
@@ -24,7 +24,7 @@ $(document).on("pagebeforeshow", "#groups", function(e, data) {
 
 $(document).on("pagebeforeshow", "#events", function(e, data) {
 
-    $.getJSON(getApiCall('events', 'fields=id,name,starts_at,ends_at&sort_by=-starts_at&private=0'), null, function(events) {
+    $.getJSON(getApiCall('events', 'fields=id,name,starts_at,ends_at&sort_by=-starts_at&private=0'), function(events) {
 
         var eventsList = $('.events-event-list');
 
@@ -54,7 +54,7 @@ $(document).on("pagebeforeshow", "#events", function(e, data) {
 
 $(document).on("pagebeforeshow", "#lists", function(e, data) {
 
-    $.getJSON(getApiCall('lists', 'fields=id,name,parent,list_size&sort_by=list_size'), null, function(entrySets) {
+    $.getJSON(getApiCall('lists', 'fields=id,name,parent,list_size&sort_by=list_size'), function(entrySets) {
 
         var entrySetsList = $('.entrySets-entrySet-list');
         

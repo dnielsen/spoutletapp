@@ -12,7 +12,7 @@ $(document).on("pagebeforeshow", "#list", function(e, data) {
     }
     
     // Get general data about the list
-    $.getJSON(getApiCall('lists/'+entry_set_id, 'fields=name,description,parent'), null, function(entrySet) {
+    $.getJSON(getApiCall('lists/'+entry_set_id, 'fields=name,description,parent'), function(entrySet) {
 
         // if (parent.avatarPath != null) {
         //     $('.entrySet-logo').attr('src', parent.avatarPath);
@@ -29,10 +29,10 @@ $(document).on("pagebeforeshow", "#list", function(e, data) {
     });
 
     // Get the entries for the list, sorted by id
-    $.getJSON(getApiCall('entries', 'fields=id,name&entrySet_id='+entry_set_id+'&sort_by=id'), null, function(entries) {
+    $.getJSON(getApiCall('entries', 'fields=id,name&entrySet_id='+entry_set_id+'&sort_by=id'), function(entries) {
 
         // Get votes for all entries in this list, sorted by entry id
-        $.getJSON(getApiCall('votes', 'fields=idea,user&idea_details="entrySet_id='+entry_set_id+'"&sort_by=idea'), null, function(votes) {
+        $.getJSON(getApiCall('votes', 'fields=idea,user&idea_details="entrySet_id='+entry_set_id+'"&sort_by=idea'), function(votes) {
 
             // Assign the initial number of votes for each entry to 0
             $.each(entries, function() {
