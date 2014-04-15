@@ -88,7 +88,7 @@ $(document).on("pagebeforeshow", "#list", function(e, data) {
 
                     entriesHtml += '<li><a href="#entry" data-p1='+entries[i].id+'>'+entries[i].name+'<p id="num-votes-'+entries[i].id+'">'+entries[i].num_votes+' votes</p></a>';
 
-                    if (api_key !== undefined) {
+                    if (localStorage['api_key'] !== undefined) {
                         if (entries[i].voted !== undefined) {
                             entriesHtml += '<a href="javascript:void(0);" data-id='+entries[i].id+' class="vote unVoteBtn" data-icon="arrow-d" data-action="unvote"></a>';
                         } else {
