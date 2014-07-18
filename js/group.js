@@ -38,7 +38,7 @@ $(document).on("pagebeforeshow", "#group", function(e, data) {
             }
         });
 
-        $.getJSON(getApiCall('events', 'fields=id,name&group_id='+group_id+'&private=0&starts_at=>'+(new Date()).toString()), function(upcomingEvents) {
+        $.getJSON(getApiCall('events', 'fields=id,name&group_id='+group_id+'&private=0&ends_at=>'+(new Date()).toString()), function(upcomingEvents) {
 
             if (upcomingEvents.length > 0) {
                 var upcomingEventsHtml = '';
@@ -53,7 +53,7 @@ $(document).on("pagebeforeshow", "#group", function(e, data) {
             }
         });
 
-        $.getJSON(getApiCall('events', 'fields=id,name&group_id='+group_id+'&private=0&ends_at=<'+(new Date()).toString()), function(pastEvents) {
+        $.getJSON(getApiCall('events', 'fields=id,name&group_id='+group_id+'&private=0&ends_at<'+(new Date()).toString()), function(pastEvents) {
 
             if (pastEvents.length > 0) {
                 var pastEventsHtml = '';
